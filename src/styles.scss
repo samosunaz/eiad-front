@@ -1,0 +1,56 @@
+$lab1: url('./assets/img/lab1.jpg');
+$lab2: url('./assets/img/lab2.jpg');
+$lab3: url('./assets/img/lab3.jpg');
+
+$font-primary: 'Raleway', sans-serif;
+$font-accent: 'Poppins', sans-serif;
+
+html,
+body,
+ui-view {
+  height: 100% !important;
+  min-height: 100% !important;
+  width: 100% !important;
+  min-width: 100% !important;
+}
+
+body {
+  font-family: $font-primary;
+}
+
+a,
+button,
+.btn {
+  font-family: $font-accent;
+  font-weight: 700;
+}
+
+.fc-today {
+  background-color: white;
+}
+
+.bg-lab {
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  z-index: -5;
+  &.opacity-cover {
+    background-color: black;
+    opacity: 0.2;
+    z-index: -4;
+  }
+}
+
+.lab-1 {
+  background-image: $lab1;
+}
+.lab-2 {
+  background-image: $lab2;
+}
+.lab-3 {
+  background-image: $lab3;
+}

@@ -1,0 +1,22 @@
+<div class="h-100">
+  <div class="row justify-content-between p-3">
+    <div>
+      <h4 ng-show="vm.selectedLab.name">Clases impartiéndose actualmente en {{ vm.selectedLab.name }}</h4>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" ng-click="vm.openAddEditClassModal(0, {})">Añadir</button>
+    </div>
+  </div>
+  <div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Laboratorio
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" ng-repeat="lab in vm.labs" ng-click="vm.getLabClasses(lab)">{{ lab.name }}</a>
+      </div>
+    </div>
+  </div>
+  <div id="classesCalendar" ng-if="vm.selectedLab.name"></div>
+</div>

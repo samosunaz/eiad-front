@@ -1,0 +1,30 @@
+<div class="h-100">
+  <div class="row justify-content-between p-3">
+    <div>
+      <h4>Lista de pisos</h4>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" ng-click="vm.openAddEditFloorModal(0, {})">Añadir</button>
+    </div>
+  </div>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="floor in vm.floors">
+        <td scope="col">{{ floor.id }}</td>
+        <td>{{ floor.name }}</td>
+        <td class="row justify-content-around">
+          <button type="button" class="btn btn-secondary" ng-click="vm.openAddEditFloorModal(1, floor)">Editar</button>
+          <button type="button" class="btn btn-danger" ng-click="vm.openConfirmDeleteModal(floor)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

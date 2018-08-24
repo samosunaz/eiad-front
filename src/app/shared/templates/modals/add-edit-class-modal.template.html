@@ -1,0 +1,70 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ action.text }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group" ng-if="action.type == 0">
+            <label for="class-id" class="col-form-label">ID</label>
+            <input type="number" class="form-control" id="class-id" ng-model="labClass.id">
+          </div>
+          <div class="form-group">
+            <label for="class-name" class="col-form-label">Nombre</label>
+            <input type="text" class="form-control" id="class-name" ng-model="labClass.name">
+          </div>
+          <div class="form-group">
+            <label for="class-starts-at" class="col-form-label">Inicia</label>
+            <input type="time" step="2" class="form-control" id="class-starts-at" ng-model="labClass.starts_at">
+          </div>
+          <div class="form-group">
+            <label for="class-ends-at" class="col-form-label">Termina</label>
+            <input type="time" step="2" class="form-control" id="class-ends-at" ng-model="labClass.ends_at">
+          </div>
+          <div class="form-group">
+            <label for="material-lab" class="col-form-label">Laboratorio</label>
+            <select type="number" class="form-control" id="material-lab" ng-model="labClass.lab_id">
+              <option ng-value="lab.id" ng-repeat="lab in labs">{{ lab.id }}</option>
+            </select>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="monday" value="1" ng-model="days[1]">
+            <label class="form-check-label" for="monday">Lunes</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="tuesday" value="2" ng-model="days[2]">
+            <label class="form-check-label" for="tuesday">Martes</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="wednesday" value="3" ng-model="days[3]">
+            <label class="form-check-label" for="wednesday">Miércoles</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="thursday" value="4" ng-model="days[4]">
+            <label class="form-check-label" for="thursday">Jueves</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="friday" value="5" ng-model="days[5]">
+            <label class="form-check-label" for="friday">Viernes</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="saturday" value="6" ng-model="days[6]">
+            <label class="form-check-label" for="saturday">Sábado</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="sunday" value="0" ng-model="days[0]">
+            <label class="form-check-label" for="sunday">Domingo</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="setType(0)">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="setType(1)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

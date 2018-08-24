@@ -1,0 +1,20 @@
+<div class="d-flex flex-column justify-content-center align-items-center h-100 bg-dark">
+  <div id="signInCard" class="border shadow-sm w-25 bg-light">
+    <h3 class="p-3">Acceso</h3>
+    <form>
+      <div class="form-group">
+        <div class="p-3">
+          <label for="adminEmail">Email</label>
+          <input type="email" class="form-control" id="adminEmail" placeholder="usuario@correo.com" ng-model="vm.user.email">
+        </div>
+        <div class="p-3">
+          <label for="adminPassword">Contraseña</label>
+          <input type="password" class="form-control" id="adminPassword" placeholder="*********" ng-model="vm.user.password">
+        </div>
+        <div class="p-3 d-flex justify-content-end">
+          <button class="btn btn-dark" ng-click="vm.signIn()" ng-disabled="vm.isLogginIn">Ingresar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

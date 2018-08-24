@@ -1,0 +1,21 @@
+<div class="d-flex align-content-stretch h-100">
+  <nav id="sidenav" class="shadow bg-light">
+    <div class="p-3">
+      <h3>{{ dashVm.user.first_name }}</h3>
+    </div>
+    <div class="text-black-50">
+      <div class="list-group d-flex flex-column justify-content-start" role="tablist">
+        <a class="list-group-item list-group-item-action" role="tab" ui-sref="adminMemos" ui-sref-active="active">Memos</a>
+        <a class="list-group-item list-group-item-action" role="tab" ng-if="dashVm.isAdmin()" ui-sref="adminFloors" ui-sref-active="active">Pisos</a>
+        <a class="list-group-item list-group-item-action" role="tab" ng-if="dashVm.isAdmin()" ui-sref="adminLabs" ui-sref-active="active">Laboratorios</a>
+        <a class="list-group-item list-group-item-action" role="tab" ui-sref="adminMaterial" ui-sref-active="active">Material</a>
+        <a class="list-group-item list-group-item-action" role="tab" ng-if="dashVm.isAdmin()" ui-sref="adminClasses" ui-sref-active="active">Clases</a>
+        <a class="list-group-item list-group-item-action" role="tab" ng-if="dashVm.isAdmin()" ui-sref="adminUsers" ui-sref-active="active">Usuarios</a>
+      </div>
+      <div class="p-3">
+        <a class="btn btn-outline-danger" ng-click="dashVm.logout()">Cerrar sesión</a>
+      </div>
+    </div>
+  </nav>
+  <div ui-view class="w-100 p-3" style="overflow-y: auto;"></div>
+</div>

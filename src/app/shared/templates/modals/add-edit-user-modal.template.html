@@ -1,0 +1,52 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ action.text }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group" ng-if="action.type == 0">
+            <label for="user-id" class="col-form-label">ID</label>
+            <input type="number" class="form-control" id="user-id" ng-model="user.id">
+          </div>
+          <div class="form-group">
+            <label for="user-first-name" class="col-form-label">Nombre</label>
+            <input type="text" class="form-control" id="user-first-name" ng-model="user.first_name">
+          </div>
+          <div class="form-group">
+            <label for="user-last-name" class="col-form-label">Apellidos</label>
+            <input type="text" class="form-control" id="user-last-name" ng-model="user.last_name">
+          </div>
+          <div class="form-group">
+            <label for="user-email" class="col-form-label">Email</label>
+            <input type="text" class="form-control" id="user-email" ng-model="user.email">
+          </div>
+          <div class="form-group">
+            <label for="user-password" class="col-form-label">Contraseña</label>
+            <input type="password" class="form-control" id="user-password" ng-model="user.password">
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="admin" value="0" ng-model="roles[0]">
+            <label class="form-check-label" for="admin">Administrador</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="inCharge" value="1" ng-model="roles[1]">
+            <label class="form-check-label" for="inCharge">Encargado</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="checkbox" id="viewer" value="2" ng-model="roles[2]">
+            <label class="form-check-label" for="viewer">Lector</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="setType(0)">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="setType(1)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

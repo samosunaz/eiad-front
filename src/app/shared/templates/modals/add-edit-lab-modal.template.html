@@ -1,0 +1,40 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ action.text }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group" ng-if="action.type == 0">
+            <label for="lab-id" class="col-form-label">ID</label>
+            <input type="text" class="form-control" id="lab-id" ng-model="lab.id">
+          </div>
+          <div class="form-group">
+            <label for="lab-name" class="col-form-label">Nombre</label>
+            <input type="text" class="form-control" id="lab-name" ng-model="lab.name">
+          </div>
+          <div class="form-group">
+            <label for="lab-floor" class="col-form-label">Piso</label>
+            <select type="number" class="form-control" id="lab-floor" ng-model="lab.floor_id">
+              <option ng-value="floor.id" ng-repeat="floor in floors">{{ floor.id }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lab-user" class="col-form-label">Encargado</label>
+            <select type="number" class="form-control" id="lab-user" ng-model="lab.user_id">
+              <option ng-value="user.id" ng-repeat="user in users">{{ user.first_name }} {{ user.last_name }}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="setType(0)">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="setType(1)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

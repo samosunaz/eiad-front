@@ -1,4 +1,5 @@
 import NavController from './nav.controller';
+import './nav.scss';
 
 export default function eiadNav() {
   const directive = {

@@ -1,0 +1,79 @@
+<div class="h-100">
+  <div class="row justify-content-between p-3">
+    <div>
+      <h4>Lista de materiales</h4>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" ng-click="vm.openAddMaterialModal()">Añadir</button>
+    </div>
+  </div>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Laboratorio</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="material in vm.materials">
+        <td scope="col">{{ material.id }}</td>
+        <td>{{ material.name }}</td>
+        <td>{{ material.brand }}</td>
+        <td>{{ material.model }}</td>
+        <td>{{ material.lab_id }}</td>
+        <td class="row justify-content-around">
+          <button type="button" class="btn btn-secondary" ng-click="vm.openEditMaterialModal(material)">Editar</button>
+          <button type="button" class="btn btn-danger" ng-click="vm.openConfirmDelete(material)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="editMaterialModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ vm.currentAction.text }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group" ng-if="vm.currentAction.type === 0">
+            <label for="material-id" class="col-form-label">ID</label>
+            <input type="text" class="form-control" id="material-id" ng-model="vm.selectedMaterial.id">
+          </div>
+          <div class="form-group">
+            <label for="material-name" class="col-form-label">Nombre</label>
+            <input type="text" class="form-control" id="material-name" ng-model="vm.selectedMaterial.name">
+          </div>
+          <div class="form-group">
+            <label for="material-brand" class="col-form-label">Marca</label>
+            <input type="text" class="form-control" id="material-brand" ng-model="vm.selectedMaterial.brand">
+          </div>
+          <div class="form-group">
+            <label for="material-model" class="col-form-label">Modelo</label>
+            <input type="text" class="form-control" id="material-model" ng-model="vm.selectedMaterial.model">
+          </div>
+          <div class="form-group">
+            <label for="material-lab" class="col-form-label">Laboratorio</label>
+            <select type="number" class="form-control" id="material-lab" ng-model="vm.selectedMaterial.lab_id">
+              <option ng-value="lab.id" ng-repeat="lab in dashVm.labs">{{ lab.id }}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.saveMaterial()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
