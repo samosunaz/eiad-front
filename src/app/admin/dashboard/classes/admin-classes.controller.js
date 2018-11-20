@@ -21,9 +21,8 @@ class AdminClassesController {
   }
 
   activate() {
-    /*     this.getClasses(); */
     this.getLabs();
-    this.initializeCalendar();
+    this.initializeCalendar(this.classes);
   }
 
   async addClass(labClass) {
@@ -44,14 +43,6 @@ class AdminClassesController {
     }
   }
 
-  async getClasses() {
-    try {
-      let classes = await this.classesService.get();
-      this.classes = classes;
-      console.log(classes);
-    } catch (error) {}
-  }
-
   async getLabs() {
     try {
       let labs = await this.labsService.get();
@@ -60,13 +51,12 @@ class AdminClassesController {
     } catch (error) {}
   }
 
-  async getLabClasses(lab) {
+  getLabClasses(lab) {
     try {
       this.selectedLab = lab;
-      let classes = await this.labsService.getClasses(lab.id);
+      let classes = lab.classes.data;
       this.destroyCalendar();
       this.initializeCalendar(classes);
-      this.$scope.$apply();
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +67,7 @@ class AdminClassesController {
   }
 
   initializeCalendar(classes) {
-    const calendarOpts = {
+    let calendarOpts = {
       header: {
         left: '',
         center: '',
@@ -147,6 +137,7 @@ class AdminClassesController {
   async updateClass(labClass) {
     try {
       let response = await this.classesService.update(labClass);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }

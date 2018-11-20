@@ -1,1 +1,20 @@
 <h1>Memos</h1>
+<div class="row align-center justify-end m-2">
+  <select
+    class="custom-select"
+    ng-change="vm.onFilterChange()"
+    ng-model="vm.filterMemos"
+  >
+    <option selected>Filtrar memos</option>
+    <option ng-value="'approved'">Aprobados</option>
+    <option ng-value="'pending'">Pendientes</option>
+    <option ng-value="'canceled'">Cancelados</option>
+  </select>
+</div>
+<div class="row">
+  <memo-card
+    class="col-12 m-2"
+    ng-repeat="memo in vm.selectedMemos"
+    memo="memo"
+  ></memo-card>
+</div>

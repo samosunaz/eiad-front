@@ -65,7 +65,6 @@ class AdminMaterialController {
   openEditMaterialModal(material) {
     this.selectedMaterial = {};
     angular.copy(material, this.selectedMaterial);
-    console.log(this.selectedMaterial);
     this.currentAction['text'] = 'Editar material';
     this.currentAction['type'] = 1;
     $('#editMaterialModal').modal({});
@@ -112,7 +111,7 @@ class AdminMaterialController {
     this.materialService
       .update(this.selectedMaterial)
       .then(res => {
-        let material = res.data;
+        let material = res.data.data;
         this.modaler
           .showAlert(
             'Material actualizado',

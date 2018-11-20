@@ -3,12 +3,12 @@ class classesService {
     'ngInject';
     this.$http = $http;
     this.$q = $q;
-    this.API_URL = API_URL;
+    this.BASE_URL = `${API_URL}/lab_classes`;
   }
 
   async add(labClass) {
     try {
-      let response = await this.$http.post(`${this.API_URL}/classes`, labClass);
+      let response = await this.$http.post(this.BASE_URL, labClass);
       return response.data;
     } catch (error) {
       return this.$q.reject(error);
@@ -17,9 +17,7 @@ class classesService {
 
   async delete(classId) {
     try {
-      let response = await this.$http.delete(
-        `${this.API_URL}/classes/${classId}`,
-      );
+      let response = await this.$http.delete(`${this.BASE_URL}/${classId}`);
       return response;
     } catch (error) {
       return this.$q.reject(error);
@@ -28,7 +26,7 @@ class classesService {
 
   async get() {
     try {
-      let response = await this.$http.get(`${this.API_URL}/classes`);
+      let response = await this.$http.get(this.BASE_URL);
       return response.data;
     } catch (error) {
       return this.$q.reject(error);
@@ -38,7 +36,7 @@ class classesService {
   async update(labClass) {
     try {
       let response = await this.$http.put(
-        `${this.API_URL}/classes/${labClass.id}`,
+        `${this.BASE_URL}/${labClass.id}`,
         labClass,
       );
       return response;

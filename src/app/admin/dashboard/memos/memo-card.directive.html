@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Memo {{ vm.memo.title }}</h5>
+    <p class="card-text">
+      Nombre: {{ vm.memo.student_name }} Matrícula: {{ vm.memo.student_id }},
+      Correo: {{ vm.memo.student_email }}
+    </p>
+    <p class="card-text">
+      Material a reservar {{ vm.memo.material.data.id }},
+      {{ vm.memo.material.data.name }}, {{ vm.memo.material.data.brand }},
+      {{ vm.memo.material.data.model }}. Laboratorio:
+      {{ vm.memo.material.data.lab_id }}
+    </p>
+    <div class="row  justify-content-end">
+      <button
+        type="button"
+        class="btn btn-success m-1"
+        ng-if="vm.memo.status === 'pending'"
+      >
+        Aprobar
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger m-1"
+        ng-if="vm.memo.status === 'pending'"
+      >
+        Rechazar
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import LabCardController from './lab-card.controller';
 
 function eiadLabCard() {
-  const directive = {
+  let directive = {
     restrict: 'E',
     bindToController: true,
     scope: {

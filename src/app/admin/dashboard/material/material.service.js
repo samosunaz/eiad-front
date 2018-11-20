@@ -64,6 +64,19 @@ class materialService {
       return this.$q.reject(error);
     }
   }
+
+  async getReservations(materialId, status) {
+    try {
+      let response = await this.$http.get(
+        `${
+          this.API_URL
+        }/materials/${materialId}?include=memos:search(status|${status})`,
+      );
+      return response.data;
+    } catch (error) {
+      return this.$q.reject(error);
+    }
+  }
 }
 
 export default materialService;

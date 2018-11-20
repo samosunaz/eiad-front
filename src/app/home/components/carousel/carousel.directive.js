@@ -1,7 +1,7 @@
 import CarouselController from './carousel.controller';
 
 export default function eiadCarousel() {
-  const directive = {
+  let directive = {
     restrict: 'E',
     bindToController: true,
     controller: CarouselController,

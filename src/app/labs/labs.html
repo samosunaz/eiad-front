@@ -1,14 +1,39 @@
 <eiad-nav></eiad-nav>
 <div ng-if="vm.showingMaterials()">
   <div class="row justify-content-center p-2">
+    <h4>Selecciona un edificio</h4>
+  </div>
+  <div class="row justify-content-center">
+    <button
+      type="button"
+      class="btn btn-secondary m-1"
+      ng-repeat="building in vm.buildings"
+      ng-click="vm.selectedBuilding = building"
+    >
+      {{ building.name }}
+    </button>
+  </div>
+  <div
+    class="row justify-content-center p-2"
+    ng-if="vm.selectedBuilding.floors"
+  >
     <h4>Selecciona un piso</h4>
   </div>
   <div class="row justify-content-center">
-    <button type="button" class="btn btn-secondary m-1" ng-repeat="floor in vm.floors" ng-click="vm.getLabs(floor.id)" ng-disabled="vm.areLabsLoading">
-      {{ floor.name }}
+    <button
+      type="button"
+      class="btn btn-secondary m-1"
+      ng-repeat="floor in vm.selectedBuilding.floors"
+      ng-click="vm.selectedFloor = floor"
+    >
+      {{ floor.name }}
     </button>
   </div>
 </div>
 <div class="row m-1" ui-view>
-  <eiad-lab-card class="col-sm-12 col-md-6 col-lg-4 col-xl-3" ng-repeat="lab in vm.labs" lab="lab"></eiad-lab-card>
+  <eiad-lab-card
+    class="col-sm-12 col-md-6 col-lg-4 col-xl-3"
+    ng-repeat="lab in vm.selectedFloor.labs"
+    lab="lab"
+  ></eiad-lab-card>
 </div>

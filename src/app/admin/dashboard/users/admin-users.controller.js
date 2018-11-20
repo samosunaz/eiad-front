@@ -1,12 +1,19 @@
 class AdminUsersController {
-  constructor($scope, $state, modaler, userService) {
+  constructor($scope, $state, modaler, roleService, userService) {
     this.users = [];
+    this.roles = [];
 
     this.$scope = $scope;
     this.$state = $state;
     this.modaler = modaler;
+    this.roleService = roleService;
     this.userService = userService;
 
+    this.activate();
+  }
+
+  activate() {
+    this.getRoles();
     this.getUsers();
   }
 
@@ -20,12 +27,19 @@ class AdminUsersController {
       console.log(error);
     }
   }
+
+  async getRoles() {
+    let roles = await this.roleService.all();
+    this.roles = roles;
+    this.$scope.$apply();
+  }
+
   openAddEditModal(type, user) {
     let modUser = {};
     angular.copy(user, modUser);
     let text = type == 0 ? 'Añadir usuario' : 'Editar usuario';
     let action = { type: type, text: text };
-    let roles = [false, false, false];
+    let roles = this.roles;
     this.modaler
       .showAddEditUser(action, modUser, roles)
       .then(async user => {

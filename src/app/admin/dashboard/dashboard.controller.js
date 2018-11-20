@@ -1,6 +1,6 @@
 require('./dashboard.scss');
 
-class DashboardController {
+export default class DashboardController {
   constructor($scope, $state, floorsService, alabsService, authenticator) {
     'ngInject';
     this.floors = [];
@@ -47,5 +47,3 @@ class DashboardController {
     this.$state.go('signIn');
   }
 }
-
-export default DashboardController;

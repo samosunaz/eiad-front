@@ -1,15 +1,19 @@
 class LabsController {
-  constructor($scope, $state, labsService) {
+  constructor($scope, $state, buildingService, labsService) {
     'ngInject';
+    this.buildings = [];
     this.floors = [];
     this.labs = [];
     this.areLabsLoading = false;
+    this.selectedBuilding = {};
+    this.selectedFloor = {};
 
     this.$scope = $scope;
     this.$state = $state;
+    this.buildingService = buildingService;
     this.labsService = labsService;
 
-    this.getFloors();
+    this.getBuildings();
   }
 
   getFloors() {
@@ -38,6 +42,15 @@ class LabsController {
         this.areLabsLoading = false;
         this.$scope.$apply();
       });
+  }
+
+  async getBuildings() {
+    try {
+      this.buildings = await this.buildingService.all();
+      this.$scope.$apply();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   showingMaterials() {

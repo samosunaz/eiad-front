@@ -1,6 +1,6 @@
 export default function routing($stateProvider) {
   'ngInject';
-  const homeState = {
+  let homeState = {
     name: 'home',
     url: '/',
     controller: 'HomeController',

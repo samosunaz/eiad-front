@@ -31,20 +31,18 @@ class labsService {
   async get() {
     try {
       let response = await this.$http.get(`${this.API_URL}/labs`);
-      let labs = response.data;
+      let labs = response.data.data;
       return labs;
     } catch (error) {
       return this.$q.reject(error);
     }
   }
 
-  async getClasses(labId) {
+  async getById(labId) {
     try {
-      let response = await this.$http.get(
-        `${this.API_URL}/labs/${labId}/classes`,
-      );
-      let classes = response.data;
-      return classes;
+      let response = await this.$http.get(`${this.API_URL}/labs/${labId}`);
+      let labs = response.data.data;
+      return labs;
     } catch (error) {
       return this.$q.reject(error);
     }

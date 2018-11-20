@@ -5,12 +5,15 @@ class AdminLabsController {
     modaler,
     floorsService,
     alabsService,
+    buildingService,
+    roleService,
     userService,
   ) {
     'ngInit';
 
     this.selectedLab = {};
     this.floors = [];
+    this.buildings = [];
     this.labs = [];
     this.usersInCharge = [];
 
@@ -19,10 +22,13 @@ class AdminLabsController {
     this.floorsService = floorsService;
     this.labsService = alabsService;
     this.modaler = modaler;
+    this.buildingService = buildingService;
+    this.roleService = roleService;
     this.userService = userService;
 
     this.getLabs();
     this.getFloors();
+    this.getBuildings();
     this.getUsersInCharge();
   }
 
@@ -39,18 +45,29 @@ class AdminLabsController {
     } catch (error) {}
   }
 
+  async getBuildings() {
+    try {
+      this.buildings = await this.buildingService.all();
+      console.log(this.buildings);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getUsersInCharge() {
     try {
-      this.usersInCharge = await this.userService.getInChargeOf();
-      console.log(this.usersInCharge);
-    } catch (error) {}
+      let response = await this.roleService.getRoleUsers(2);
+      this.usersInCharge = response;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async addLab(lab) {
     try {
       let response = await this.labsService.add(lab);
-      let newLab = response.data;
-      this.modaler.showAlert(
+      let newLab = response.data.data;
+      newLab.this.modaler.showAlert(
         'Laboratorio añadido',
         `El laboratorio con ID ${newLab.id} se ha añadido exitosamente`,
         `Cerrar`,
@@ -82,8 +99,15 @@ class AdminLabsController {
     angular.copy(lab, this.selectedLab);
     let text = type == 0 ? 'Agregar laboratorio' : 'Editar laboratorio';
     let action = { text: text, type: type };
+    console.log(this.usersInCharge);
     this.modaler
-      .showAddEditLab(action, lab, this.floors, this.usersInCharge)
+      .showAddEditLab(
+        action,
+        lab,
+        this.floors,
+        this.usersInCharge,
+        this.buildings,
+      )
       .then(
         lab => {
           if (type == 0) {

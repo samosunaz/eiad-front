@@ -1,4 +1,5 @@
 import AdminController from './admin.controller';
+import AdminBuildingsController from './dashboard/buildings/admin-buildings.controller';
 import AdminClassesController from './dashboard/classes/admin-classes.controller';
 import DashboardController from './dashboard/dashboard.controller';
 import AdminFloorsController from './dashboard/floors/admin-floors.controller';
@@ -11,7 +12,7 @@ import SignInController from './sign-in/sign-in.controller';
 function routing($stateProvider) {
   'ngInject';
 
-  const admin = {
+  let admin = {
     abstract: true,
     name: 'admin',
     url: '/admin',
@@ -20,7 +21,7 @@ function routing($stateProvider) {
     template: require('./admin.html'),
   };
 
-  const dashboard = {
+  let dashboard = {
     abstract: true,
     name: 'dashboard',
     url: '/dashboard',
@@ -30,7 +31,7 @@ function routing($stateProvider) {
     template: require('./dashboard/dashboard.html'),
   };
 
-  const signIn = {
+  let signIn = {
     name: 'signIn',
     url: '/acceso',
     controller: SignInController,
@@ -38,7 +39,7 @@ function routing($stateProvider) {
     template: require('./sign-in/sign-in.html'),
   };
 
-  const adminClasses = {
+  let adminClasses = {
     name: 'adminClasses',
     url: '/clases',
     controller: AdminClassesController,
@@ -50,7 +51,19 @@ function routing($stateProvider) {
     template: require('./dashboard/classes/admin-classes.html'),
   };
 
-  const adminFloors = {
+  let adminBuildings = {
+    name: 'adminBuildings',
+    url: '/edificios',
+    controller: AdminBuildingsController,
+    controllerAs: 'vm',
+    parent: dashboard,
+    data: {
+      admin: true,
+    },
+    template: require('./dashboard/buildings/admin-buildings.html'),
+  };
+
+  let adminFloors = {
     name: 'adminFloors',
     url: '/pisos',
     controller: AdminFloorsController,
@@ -62,7 +75,7 @@ function routing($stateProvider) {
     template: require('./dashboard/floors/admin-floors.html'),
   };
 
-  const adminLabs = {
+  let adminLabs = {
     name: 'adminLabs',
     url: '/laboratorios',
     controller: AdminLabsController,
@@ -74,7 +87,7 @@ function routing($stateProvider) {
     template: require('./dashboard/labs/admin-labs.html'),
   };
 
-  const adminMaterial = {
+  let adminMaterial = {
     name: 'adminMaterial',
     url: '/material',
     controller: AdminMaterialController,
@@ -83,7 +96,7 @@ function routing($stateProvider) {
     template: require('./dashboard/material/admin-material.html'),
   };
 
-  const adminMemos = {
+  let adminMemos = {
     name: 'adminMemos',
     url: '/memos',
     controller: AdminMemosController,
@@ -92,7 +105,7 @@ function routing($stateProvider) {
     template: require('./dashboard/memos/admin-memos.html'),
   };
 
-  const adminUsers = {
+  let adminUsers = {
     name: 'adminUsers',
     url: '/usuarios',
     controller: AdminUsersController,
@@ -109,6 +122,7 @@ function routing($stateProvider) {
     .state(dashboard)
     .state(signIn)
     .state(adminClasses)
+    .state(adminBuildings)
     .state(adminFloors)
     .state(adminLabs)
     .state(adminMaterial)
