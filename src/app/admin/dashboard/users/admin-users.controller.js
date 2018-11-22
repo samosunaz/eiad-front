@@ -46,11 +46,15 @@ class AdminUsersController {
         try {
           if (type == 0) {
             let newUser = await this.userService.add(user);
-            console.log(newUser);
+            this.$state.reload();
           } else {
           }
         } catch (error) {
-          console.log(error);
+          this.modaler.showAlert(
+            'Usuario no agregado',
+            'Por favor inténtalo de nuevo',
+            'Entendido',
+          );
         }
       })
       .catch(cancel => {
@@ -70,8 +74,16 @@ class AdminUsersController {
       )
       .then(
         async confirm => {
-          let response = await this.userService.delete(modUser);
-          console.log(response);
+          try {
+            let response = await this.userService.delete(modUser);
+            this.$state.reload();
+          } catch (error) {
+            this.modaler.showAlert(
+              'El usuario no pudo ser eliminado',
+              'Comprueba que no tenga laboratorios asignados',
+              'Entendido',
+            );
+          }
         },
         cancel => {},
       );

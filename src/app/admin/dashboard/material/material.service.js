@@ -1,8 +1,10 @@
 class materialService {
-  constructor($http, $q, API_URL) {
+  constructor(authenticator, $http, $q, API_URL) {
     'ngInit';
     this.$http = $http;
     this.$q = $q;
+
+    this.authenticator = authenticator;
     this.API_URL = API_URL;
     this.getConfig = {
       cache: true,
@@ -46,7 +48,13 @@ class materialService {
 
   async getMaterial() {
     try {
-      let materials = await this.$http.get(`${this.API_URL}/materials`);
+      let endpoint = `${this.API_URL}/materials`;
+      if (!this.authenticator.isAdmin()) {
+        endpoint = `${this.API_URL}/users/${
+          this.authenticator.getUser().id
+        }/labs/materials`;
+      }
+      let materials = await this.$http.get(endpoint);
       return materials;
     } catch (error) {
       return this.$q.reject(error);

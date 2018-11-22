@@ -109,12 +109,13 @@ class AdminLabsController {
         this.buildings,
       )
       .then(
-        lab => {
+        async lab => {
           if (type == 0) {
-            this.addLab(lab);
+            await this.addLab(lab);
           } else {
-            this.updateLab(lab);
+            await this.updateLab(lab);
           }
+          this.$state.reload();
         },
         cancel => {},
       );
@@ -137,8 +138,8 @@ class AdminLabsController {
       );
   }
 
-  updateLab() {
-    console.log('Lab updated!');
+  async updateLab(lab) {
+    await this.labsService.update(lab);
   }
 }
 

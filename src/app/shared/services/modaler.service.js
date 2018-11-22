@@ -112,22 +112,28 @@ class modaler {
       scope.action = action;
       scope.roles = roles;
       scope.user = user;
+      if (!scope.user.role_id) {
+        scope.selectedRole = roles[0];
+      } else {
+        roles.forEach(role => {
+          if (role.id == user.role_id) {
+            scope.selectedRole = role;
+          }
+        });
+      }
       scope.type = 0;
       scope.setType = type => {
         scope.type = type;
+      };
+      scope.handleRole = role => {
+        scope.selectedRole = role;
       };
       let compiled = this.$compile(template)(scope);
       $(compiled)
         .modal({})
         .on('hidden.bs.modal', () => {
-          let newRoles = [];
-          scope.roles.forEach((value, index) => {
-            if (value) {
-              newRoles.push(index + 1);
-            }
-          });
-          scope.user.roles = newRoles;
           if (scope.type == 1) {
+            scope.user.role_id = scope.selectedRole.id;
             resolve(scope.user);
           } else {
             reject('Modal close canceled');
