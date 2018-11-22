@@ -74,8 +74,49 @@ button,
     text-align: center;
   }
 
-  .floor-selector {
-    background-color: aquamarine;
+  // Animation for the floor selector
+  @keyframes scaleFromZ {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(100%);
+    }
+  }
+  .floor-selector, .lab-selector {  
+    animation: 0.2s ease-out 0s 1 scaleFromZ;
   }
 
+  // Button align
+  eiad-lab-card a {
+    width:100%;
+  }
+
+  // Login size
+  #signInCard {
+    width: 85% !important;
+  }
+
+  #sidenav {
+    min-width: 2.2em;
+  }
+
+  .btn-outline-danger {
+    width: 98%;
+    font-size: .7em;
+  }
+}
+
+// Tablet devices
+@media (min-width: 768px) { 
+  #signInCard {
+    width: 50% !important;
+  }
+}
+
+// Laptop devices
+@media (min-width: 1024px) { 
+  #signInCard {
+    width: 25% !important;
+  }
 }

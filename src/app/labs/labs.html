@@ -22,7 +22,7 @@
   <div class="row justify-content-center floor-selector">
     <button
       type="button"
-      class="btn btn-secondary m-1"
+      class="btn btn-secondary m-1 floor-selector"
       ng-repeat="floor in vm.selectedBuilding.floors"
       ng-click="vm.selectedFloor = floor"
     >
@@ -30,9 +30,9 @@
     </button>
   </div>
 </div>
-<div class="row m-1" ui-view>
+<div class="row m-1 lab-selector" ui-view>
   <eiad-lab-card
-    class="col-sm-12 col-md-6 col-lg-4 col-xl-3"
+    class="col-sm-12 col-md-6 col-lg-4 col-xl-3 lab-selector"
     ng-repeat="lab in vm.selectedFloor.labs"
     lab="lab"
   ></eiad-lab-card>
