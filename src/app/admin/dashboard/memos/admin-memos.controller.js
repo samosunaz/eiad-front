@@ -44,6 +44,7 @@ export default class AdminMemosController {
       this.approvedMemos = approvedRes.data;
       this.pendingMemos = pendingRes.data;
       this.canceledMemos = canceledRes.data;
+      this.filterMemos = 'pending';
     } catch (error) {
       console.log(error);
     }

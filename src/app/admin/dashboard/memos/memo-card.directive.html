@@ -1,28 +1,32 @@
-<div class="card">
+<div class="card bg-dark text-white">
   <div class="card-body">
     <h5 class="card-title">Memo {{ vm.memo.title }}</h5>
-    <p class="card-text">
-      Nombre: {{ vm.memo.student_name }} Matrícula: {{ vm.memo.student_id }},
-      Correo: {{ vm.memo.student_email }}
-    </p>
-    <p class="card-text">
-      Material a reservar {{ vm.memo.material.data.id }},
-      {{ vm.memo.material.data.name }}, {{ vm.memo.material.data.brand }},
-      {{ vm.memo.material.data.model }}. Laboratorio:
-      {{ vm.memo.material.data.lab_id }}
-    </p>
+      <p class="card-text">
+      <strong>Alumno</strong>
+        <p>{{ vm.memo.student_name }} {{ vm.memo.student_id }}</p>
+        <p>{{ vm.memo.student_email }}</p>
+      </p>
+      <p class="card-text">
+        <strong>Material a reservar</strong>
+        <p>[{{ vm.memo.material.data.id }}]: {{ vm.memo.material.data.name }} {{ vm.memo.material.data.brand }}. Modelo: {{ vm.memo.material.data.model }}</p>
+        <p>Laboratorio: {{ vm.memo.material.data.lab_id }}</p>
+        <p>{{ vm.memo.start }} – {{ vm.memo.end }}</p>
+      </p>
+    
     <div class="row  justify-content-end">
       <button
         type="button"
         class="btn btn-success m-1"
         ng-if="vm.memo.status === 'pending'"
+        ng-click="vm.approveMemo()"
       >
         Aprobar
       </button>
       <button
         type="button"
         class="btn btn-danger m-1"
-        ng-if="vm.memo.status === 'pending'"
+        ng-if="vm.memo.status !== 'canceled'"
+        ng-click="vm.cancelMemo()"
       >
         Rechazar
       </button>

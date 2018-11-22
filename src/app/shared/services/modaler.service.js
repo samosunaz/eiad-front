@@ -192,15 +192,12 @@ class modaler {
       scope.setType = type => {
         scope.type = type;
       };
-      scope.apply = type => {
-        scope.$apply();
-      };
       let compiled = this.$compile(template)(scope);
       scope.$apply();
       $(compiled)
         .modal({})
         .on('hidden.bs.modal', () => {
-          if (scope.type != 0) {
+          if (scope.type === 1) {
             resolve(scope.reservation);
           } else {
             reject();

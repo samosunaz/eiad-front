@@ -27,5 +27,12 @@ export default class memoService {
 
   get() {}
 
-  update() {}
+  async update(memo) {
+    try {
+      let response = await this.$http.put(`${this.BASE_URL}/${memo.id}`, memo);
+      return response.data;
+    } catch (error) {
+      return $q.reject(error);
+    }
+  }
 }
