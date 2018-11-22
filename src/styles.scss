@@ -54,3 +54,28 @@ button,
 .lab-3 {
   background-image: $lab3;
 }
+
+// xSmall devices (landscape phones, 576px and up)
+@media (max-width: 576px) { 
+  
+  // Make image full screen
+  .inner-img{
+  min-height: 100vh;
+    object-fit: cover;
+  }
+
+  // Text in reservation not overflow
+  .fc-day-header {
+    font-size: .74em;
+  }
+
+  // Align text on mobile reservation
+  .ng-binding {
+    text-align: center;
+  }
+
+  .floor-selector {
+    background-color: aquamarine;
+  }
+
+}
