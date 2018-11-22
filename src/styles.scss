@@ -55,6 +55,11 @@ button,
   background-image: $lab3;
 }
 
+// Align 
+.empty-selector {
+  margin: 1em auto;
+}
+
 // xSmall devices (landscape phones, 576px and up)
 @media (max-width: 576px) { 
   

@@ -37,7 +37,9 @@ class LabsController {
       .then(res => {
         this.labs = res.data;
       })
-      .catch(err => {})
+      .catch(err => {
+        console.log(err);
+      })
       .finally(() => {
         this.areLabsLoading = false;
         this.$scope.$apply();

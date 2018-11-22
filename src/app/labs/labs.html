@@ -14,15 +14,15 @@
     </button>
   </div>
   <div
-    class="row justify-content-center p-2 floor-selector"
+    class="row justify-content-center p-2"
     ng-if="vm.selectedBuilding.floors"
   >
     <h4>Selecciona un piso</h4>
   </div>
-  <div class="row justify-content-center floor-selector">
+  <div class="row justify-content-center">
     <button
       type="button"
-      class="btn btn-secondary m-1 floor-selector"
+      class="btn btn-secondary m-1"
       ng-repeat="floor in vm.selectedBuilding.floors"
       ng-click="vm.selectedFloor = floor"
     >
@@ -30,10 +30,16 @@
     </button>
   </div>
 </div>
-<div class="row m-1 lab-selector" ui-view>
-  <eiad-lab-card
-    class="col-sm-12 col-md-6 col-lg-4 col-xl-3 lab-selector"
+<div class="row m-1" ui-view>
+  <eiad-lab-card 
+    class="col-sm-12 col-md-6 col-lg-4 col-xl-3"
     ng-repeat="lab in vm.selectedFloor.labs"
     lab="lab"
   ></eiad-lab-card>
+
+  <p 
+    class="text-center empty-selector"
+    lab="lab"
+    ng-if="vm.selectedFloor.labs.length<1">No hay laboratorio disponible</p>
 </div>
+
