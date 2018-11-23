@@ -24,6 +24,8 @@ class ReservationController {
     this.memoService = memoService;
     this.MAXIMUM_RESERVATION_HOURS = 5;
 
+    this.events = [];
+
     this.getClasses();
     this.getMaterial();
   }
@@ -32,7 +34,7 @@ class ReservationController {
     try {
       let response = await this.labsService.getById(this.labId);
       this.labClasses = response.classes.data;
-      // this.initializeCalendar(this.labClasses);
+      this.events = this.events.concat(this.labClasses);
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +47,9 @@ class ReservationController {
       'approved',
     );
     this.material = material.data;
-    this.initializeCalendar(this.material.memos.data);
+    this.events = this.events.concat(this.material.memos.data);
+    console.log(this.events);
+    this.initializeCalendar(this.events);
     this.$scope.$apply();
     try {
     } catch (error) {}
