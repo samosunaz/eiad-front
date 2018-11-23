@@ -15,7 +15,7 @@ npm install
 Then run the command
 
 ```bash
-npm run build
+npm run start
 ```
 
 ## Usage
