@@ -14,6 +14,7 @@ ui-view {
   min-height: 100% !important;
   width: 100% !important;
   min-width: 100% !important;
+  font-size: 1em;
 }
 
 body {
@@ -29,6 +30,19 @@ button,
 
 .fc-today {
   background-color: white;
+}
+
+.h1-mod{
+  position: absolute;
+  top: 2em;
+  line-height: 12em;
+  margin: 0 auto;
+  text-align: center;
+  left: 5.5em;
+  font-size: 3em; 
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .bg-lab {
@@ -106,6 +120,19 @@ strong {
   .inner-img{
   min-height: 100vh;
     object-fit: cover;
+  }
+
+  .h1-mod{
+  position: absolute;
+  top: 10.4em;
+  line-height: 1em;
+  margin: 0 auto;
+  text-align: center;
+  left: 0em;
+  font-size: 2em; 
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000000;
   }
 
   // Text in reservation not overflow
