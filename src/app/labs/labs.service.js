@@ -9,7 +9,7 @@ class LabsService {
   async getLab(labId) {
     try {
       let lab = await this.$http.get(
-        `${this.API_URL}/labs/${labId}`,
+        `${this.API_URL}/labs/${labId}?with=materials`,
         this.getConfig,
       );
       return lab;

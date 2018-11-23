@@ -5,6 +5,8 @@ $lab3: url('./assets/img/lab3.jpg');
 $font-primary: 'Raleway', sans-serif;
 $font-accent: 'Poppins', sans-serif;
 
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
 html,
 body,
 ui-view {
@@ -53,4 +55,99 @@ button,
 }
 .lab-3 {
   background-image: $lab3;
+}
+
+.footer-copyright {
+  font-family: "Raleway";
+  background-color: rgb(37, 37, 37);
+  color: ghostwhite;
+  font-size: .7em;
+}
+
+.copyright{
+    background-color: rgb(17, 17, 17);
+}
+
+.footer-copyright a {
+  color: aliceblue;
+}
+
+ // Animation for the floor selector
+  @keyframes scaleFromZ {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(100%);
+    }
+  }
+  .floor-selector, .lab-selector {  
+    animation: 0.2s ease-out 0s 1 scaleFromZ;
+  }
+
+// Align 
+.empty-selector {
+  margin: 1em auto;
+}
+
+.card-img-top {
+    margin: 0 auto;
+    width: 50%;
+}
+
+strong {
+  text-align: center;
+}
+
+// xSmall devices (landscape phones, 576px and up)
+@media (max-width: 576px) { 
+  
+  // Make image full screen
+  .inner-img{
+  min-height: 100vh;
+    object-fit: cover;
+  }
+
+  // Text in reservation not overflow
+  .fc-day-header {
+    font-size: .74em;
+  }
+
+  // Align text on mobile reservation
+  .ng-binding {
+    text-align: center;
+  }
+
+  // Button align
+  eiad-lab-card a {
+    width:100%;
+  }
+
+  // Login size
+  #signInCard {
+    width: 85% !important;
+  }
+
+  #sidenav {
+    min-width: 2.2em;
+  }
+
+  .btn-outline-danger {
+    width: 98%;
+    font-size: .7em;
+  }
+}
+
+// Tablet devices
+@media (min-width: 768px) { 
+  #signInCard {
+    width: 50% !important;
+  }
+}
+
+// Laptop devices
+@media (min-width: 1024px) { 
+  #signInCard {
+    width: 25% !important;
+  }
 }

@@ -15,37 +15,22 @@
       <div class="modal-body">
         <form>
           <div class="form-group" ng-if="action.type == 0">
-            <label for="floor-id" class="col-form-label">ID</label>
+            <label for="building-id" class="col-form-label"> ID </label>
             <input
-              type="text"
               class="form-control"
-              id="floor-id"
-              ng-model="floor.id"
+              type="text"
+              id="building-id"
+              ng-model="building.id"
             />
           </div>
           <div class="form-group">
-            <label for="floor-name" class="col-form-label">Nombre</label>
+            <label for="building-name" class="col-form-label"> Nombre </label>
             <input
+              class="form-control"
               type="text"
-              class="form-control"
-              id="floor-name"
-              ng-model="floor.name"
+              id="building-name"
+              ng-model="building.name"
             />
-          </div>
-          <div class="form-group">
-            <label for="floor-building" class="col-form-label">Edificio</label>
-            <select
-              type="number"
-              class="form-control"
-              id="floor-building"
-              ng-model="floor.building_id"
-            >
-              <option
-                ng-value="building.id"
-                ng-repeat="building in buildings"
-                >{{ building.name }}</option
-              >
-            </select>
           </div>
         </form>
       </div>

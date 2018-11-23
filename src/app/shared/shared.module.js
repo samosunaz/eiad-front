@@ -5,7 +5,7 @@ import eiadMaterialCard from './components/material-card/material-card.directive
 import eiadNav from './components/nav/nav.directive';
 import modaler from './services/modaler.service';
 
-const shared = angular
+let shared = angular
   .module('shared', [core])
   .directive('eiadLabCard', eiadLabCard)
   .directive('eiadNav', eiadNav)

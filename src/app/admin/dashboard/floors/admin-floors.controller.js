@@ -1,12 +1,14 @@
 class AdminFloorsController {
-  constructor($scope, $state, floorsService, modaler) {
+  constructor($scope, $state, buildingService, floorsService, modaler) {
     'ngInit';
 
     this.floors = [];
+    this.buildings = [];
     this.selectedFloor = {};
 
     this.$scope = $scope;
     this.$state = $state;
+    this.buildingService = buildingService;
     this.floorsService = floorsService;
     this.modaler = modaler;
 
@@ -15,12 +17,19 @@ class AdminFloorsController {
 
   activate() {
     this.getFloors();
+    this.getBuildings();
+  }
+
+  async getBuildings() {
+    let buildings = await this.buildingService.all();
+    this.buildings = buildings;
+    this.$scope.$apply();
   }
 
   async addFloor(floor) {
     try {
       let newFloor = await this.floorsService.add(floor);
-      this.floors.push(newFloor);
+      this.floors.push(newFloor.data);
       this.floors.sort((a, b) => {
         return a['id'] - b['id'];
       });
@@ -72,7 +81,7 @@ class AdminFloorsController {
   openAddEditFloorModal(type, floor) {
     let text = type == 0 ? 'Agregar piso' : 'Editar piso';
     let action = { type: type, text: text };
-    this.modaler.showAddEditFloor(action, floor).then(
+    this.modaler.showAddEditFloor(action, floor, this.buildings).then(
       floorRes => {
         if (type == 0) {
           this.addFloor(floorRes);

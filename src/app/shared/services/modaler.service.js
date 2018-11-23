@@ -4,6 +4,27 @@ class modaler {
     this.$rootScope = $rootScope;
   }
 
+  showAddEditBuilding(action, building) {
+    return new Promise((resolve, reject) => {
+      let template = require('./../templates/modals/add-edit-building-modal.template.html');
+      let scope = this.$rootScope.$new(true);
+      scope.action = action;
+      scope.building = {};
+      angular.copy(building, scope.building);
+      scope.type = 0;
+      scope.setType = type => {
+        scope.type = type;
+      };
+      let compiled = this.$compile(template)(scope);
+      $(compiled)
+        .modal({})
+        .on('hidden.bs.modal', () => {
+          scope.type == 1 ? resolve(scope.building) : reject('Modal closed');
+          scope.$destroy();
+        });
+    });
+  }
+
   showAddEditClass(action, labClass, labs) {
     return new Promise((resolve, reject) => {
       let template = require('./../templates/modals/add-edit-class-modal.template.html');
@@ -34,7 +55,7 @@ class modaler {
     });
   }
 
-  showAddEditFloor(action, floor) {
+  showAddEditFloor(action, floor, buildings) {
     return new Promise((resolve, reject) => {
       let template = require('./../templates/modals/add-edit-floor-modal.template.html');
       let scope = this.$rootScope.$new(true);
@@ -45,6 +66,7 @@ class modaler {
         scope.type = type;
       };
       angular.copy(floor, scope.floor);
+      scope.buildings = buildings;
       let compiled = this.$compile(template)(scope);
       $(compiled)
         .modal({})
@@ -55,12 +77,14 @@ class modaler {
     });
   }
 
-  showAddEditLab(action, lab, floors, users) {
+  showAddEditLab(action, lab, floors, users, buildings) {
     return new Promise((resolve, reject) => {
       let template = require('./../templates/modals/add-edit-lab-modal.template.html');
       let scope = this.$rootScope.$new(true);
       scope.action = action;
       scope.floors = floors;
+      scope.buildings = buildings;
+      scope.selectedBuilding = {};
       scope.lab = lab;
       scope.type = 0;
       scope.users = users;
@@ -160,6 +184,7 @@ class modaler {
     return new Promise((resolve, reject) => {
       let template = require('./../templates/modals/create-reservation-modal.template.html');
       let scope = this.$rootScope.$new(true);
+      scope.reservation = {};
       scope.material = material;
       scope.startsAt = start;
       scope.endsAt = end;
@@ -172,8 +197,8 @@ class modaler {
       $(compiled)
         .modal({})
         .on('hidden.bs.modal', () => {
-          if (scope.type != 0) {
-            resolve(scope.type);
+          if (scope.type === 1) {
+            resolve(scope.reservation);
           } else {
             reject();
           }

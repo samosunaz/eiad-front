@@ -1,7 +1,7 @@
 import MaterialCardController from './material-card.controller';
 
 function eiadMaterialCard() {
-  const directive = {
+  let directive = {
     restrict: 'E',
     bindToController: true,
     scope: {

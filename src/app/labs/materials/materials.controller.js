@@ -14,10 +14,11 @@ class MaterialsController {
     this.labsService
       .getLab(labId)
       .then(res => {
-        console.log(res);
-        this.lab = res.data;
+        this.lab = res.data.data;
       })
-      .catch(err => {})
+      .catch(err => {
+        console.log(err);
+      })
       .finally(() => {
         this.$scope.$apply();
       });

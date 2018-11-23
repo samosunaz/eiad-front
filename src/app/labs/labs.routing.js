@@ -5,7 +5,7 @@ import ReservationController from './materials/reservation/reservation.controlle
 function routing($stateProvider) {
   'ngInject';
 
-  const labsState = {
+  let labsState = {
     name: 'labs',
     url: '/laboratorios',
     controller: LabsController,
@@ -13,7 +13,7 @@ function routing($stateProvider) {
     template: require('./labs.html'),
   };
 
-  const materials = {
+  let materials = {
     name: 'materials',
     url: '/:labId/materiales',
     parent: labsState,
@@ -22,7 +22,7 @@ function routing($stateProvider) {
     template: require('./materials/materials.html'),
   };
 
-  const reservation = {
+  let reservation = {
     name: 'reservation',
     url: '/:materialId',
     parent: materials,
