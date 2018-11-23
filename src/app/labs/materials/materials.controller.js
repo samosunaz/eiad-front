@@ -16,7 +16,9 @@ class MaterialsController {
       .then(res => {
         this.lab = res.data.data;
       })
-      .catch(err => {})
+      .catch(err => {
+        console.log(err);
+      })
       .finally(() => {
         this.$scope.$apply();
       });

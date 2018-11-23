@@ -20,6 +20,8 @@ class AdminMaterialController {
     this.modaler = modaler;
 
     this.getMaterial();
+
+    this.imgSrc = '../../../../assets/img/materials/'+ this.material.name + '.jpg';
   }
 
   addMaterial() {
